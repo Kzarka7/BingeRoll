@@ -122,7 +122,11 @@ registerButton.addEventListener("click", (e) => {
         return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let users = JSON.parse(localStorage.getItem("users"));
+
+    if (!Array.isArray(users)) {
+        users = [];
+    }
 
     const userExists = users.find(user => user.username === username);
 
@@ -153,7 +157,11 @@ loginButton.addEventListener("click", (e) => {
     const username = loginModal.querySelector("input[type='text']").value.trim();
     const password = loginModal.querySelector(".modalPass input").value;
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let users = JSON.parse(localStorage.getItem("users"));
+
+    if (!Array.isArray(users)) {
+        users = [];
+    }
 
     const validUser = users.find(user => 
         user.username === username && user.password === password
@@ -187,5 +195,6 @@ document.querySelectorAll(".togglePassword").forEach(button => {
 
     });
 });
+
 
 updateAuthButton();
