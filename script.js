@@ -65,21 +65,23 @@ window.addEventListener("click", (e) => {
 });
 
 // LOGS OUT THE USER
-signIn.addEventListener("click", () => {
-
-    const loggedInUser = localStorage.getItem("loggedInUser");
-
-    if (loggedInUser) {
-        // ===== LOGOUT =====
-        localStorage.removeItem("loggedInUser");
-        alert("Logged out successfully!");
-        updateAuthButton();
-    } else {
-        // ===== OPEN LOGIN =====
-        registerModal.style.display = "none";
-        loginModal.style.display = "flex";
-    }
-});
+if (signIn) {
+    signIn.addEventListener("click", () => {
+    
+        const loggedInUser = localStorage.getItem("loggedInUser");
+    
+        if (loggedInUser) {
+            // ===== LOGOUT =====
+            localStorage.removeItem("loggedInUser");
+            alert("Logged out successfully!");
+            updateAuthButton();
+        } else {
+            // ===== OPEN LOGIN =====
+            registerModal.style.display = "none";
+            loginModal.style.display = "flex";
+        }
+    });
+}
 
 // CHANGES THE TEXT IN THE NAV BUTTON FOR THE SIGN IN
 function updateAuthButton() {
@@ -104,75 +106,74 @@ function updateAuthButton() {
 }
 
 // REGISTER FUNCTION MODAL
-registerButton.addEventListener("click", (e) => {
-
-    e.preventDefault();
-
-    const username = registerModal.querySelector(".modalUser input").value.trim();
-    const password = registerModal.querySelector(".modalPass input").value;
-    const repPassword = document.getElementById("repPassword").value;
-
-    if (!username || !password || !repPassword) {
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    if (password !== repPassword) {
-        alert("Passwords do not match.");
-        return;
-    }
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const userExists = users.find(user => user.username === username);
-
-    if (userExists) {
-        alert("Username already exists.");
-        return;
-    }
-
-    users.push({
-        username: username,
-        password: password
+if (registerButton) {
+    registerButton.addEventListener("click", (e) => {
+    
+        e.preventDefault();
+    
+        const username = registerModal.querySelector(".modalUser input").value.trim();
+        const password = registerModal.querySelector(".modalPass input").value;
+        const repPassword = document.getElementById("repPassword").value;
+    
+        if (!username || !password || !repPassword) {
+            alert("Please fill in all fields.");
+            return;
+        }
+    
+        if (password !== repPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+    
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+    
+        const userExists = users.find(user => user.username === username);
+    
+        if (userExists) {
+            alert("Username already exists.");
+            return;
+        }
+    
+        users.push({
+            username: username,
+            password: password
+        });
+    
+        localStorage.setItem("users", JSON.stringify(users));
+    
+        alert("Account created successfully!");
+    
+        registerModal.style.display = "none";
+        loginModal.style.display = "flex";
+    
     });
-
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Account created successfully!");
-
-    registerModal.style.display = "none";
-    loginModal.style.display = "flex";
-
-});
+}
 
 // LOGIN FUNCTION MODAL
-loginButton.addEventListener("click", (e) => {
+if (loginButton) {
+    loginButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        
+        const username = loginModal.querySelector("input[type='text']").value.trim();
+        const password = loginModal.querySelector(".modalPass input").value;
 
-    e.preventDefault();
+        let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const username = loginModal.querySelector("input[type='text']").value.trim();
-    const password = loginModal.querySelector(".modalPass input").value;
+        const validUser = users.find(user => 
+            user.username === username && user.password === password
+        );
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+        if (!validUser) {
+            alert("Invalid username or password.");
+            return;
+        }
 
-    const validUser = users.find(user => 
-        user.username === username && user.password === password
-    );
-
-    if (!validUser) {
-        alert("Invalid username or password.");
-        return;
-    }
-
-    localStorage.setItem("loggedInUser", username);
-
-    alert("Login successful!");
-
-    updateAuthButton();
-
-    loginModal.style.display = "none";
-
-});
+        localStorage.setItem("loggedInUser", username);
+        alert("Login successful!");
+        updateAuthButton();
+        loginModal.style.display = "none";
+    });
+}
 
 document.querySelectorAll(".togglePassword").forEach(button => {
     button.addEventListener("click", function () {
@@ -187,5 +188,6 @@ document.querySelectorAll(".togglePassword").forEach(button => {
 
     });
 });
+
 
 updateAuthButton();
