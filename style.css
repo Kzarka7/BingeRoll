@@ -125,7 +125,7 @@ main p {
     color: inherit;
     font: inherit;
     font-size: 1.1rem;
-    padding: 0 4.5vw;
+    padding: 0 2vw;
     max-width: 600px;
     width: 80%;
 }
@@ -380,6 +380,7 @@ footer a:hover {
 
     .search input {
         width: 100%;
+        padding: 0 5vw;
     }
 
     article {
