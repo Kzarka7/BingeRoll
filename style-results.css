@@ -16,6 +16,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 15px 15vw;
+    border-bottom: #2d2d2d solid 1px;
 }
 
 .left {
@@ -78,40 +79,22 @@ nav {
 .right a {
     display: flex;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     font-weight: 600;
     color: inherit;
     padding: 0 1.2vw;
-    height: 5.5vh;
+    height: 45px;
     border-radius: 50px;
+    transition: background-color 0.2s ease;
 }   
 
 .right a:hover {
-    color: #ffffffc6;
+    background-color: #181818;
 }
 
 .right i {
     display: none;
-}
-
-.username {
-    font-weight: 600;
-    color: inherit;
-    font-size: 1.1rem;
-    text-transform: capitalize;
-}
-
-.searchButton {
-    width: 30px;
-    height: 45px;
-    border: none;
-    border-radius: 50px;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.searchButton i {
-    color: white;
 }
 
 #signIn {
@@ -129,6 +112,27 @@ nav {
 
 #signIn:hover {
     background-color: #392cae;
+}
+
+.username {
+    font-weight: 600;
+    color: inherit;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+}
+
+.searchButton {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.searchButton i {
+    color: white;
 }
 
 .mobileSearchContainer {
@@ -173,22 +177,50 @@ nav {
 main {
     padding: 0 20vw;
     flex: 1;
+    margin-bottom: 10vh;
 }
 
 main h2 {
     font-size: 1.7rem;
+    margin-bottom: 30px;
 }
 
 .movieContainer {
     display: flex;
-    margin-bottom: 3vh;
     align-items: center;
     justify-content: space-between;
+    padding: 20px;
+    margin: 0 0 20px 0;
+    border-radius: 15px;
+    border: #2d2d2d solid 1px;
+    background-color: #121212;
+    box-shadow: 0 0 10px 0 #212121;
+
+    animation: fadeUp linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(4px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .movieCard {
     display: flex;
-    gap: 2vw;
 }
 
 .movieCard img {
@@ -196,6 +228,7 @@ main h2 {
     width: 180px;
     border-radius: 5px;
     object-fit: cover;
+    padding: 0 20px 0 0
 }
 
 .movieInfo {
@@ -450,25 +483,32 @@ main h2 {
 }
 
 footer {
-  height: 9%;
-  font-weight: 200;
-  font-size: 0.9rem;
-  color: lightgray;
-  background-color: #121212;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  bottom: 0;
-  width: 100%;
-  margin-top: 10vh;
+    height: 9%;
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: lightgray;
+    background-color: #101010;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: #2d2d2d solid 1px;
+    padding: 5px 0;
 }
 
 footer a {
-  color: lightgray;
-  margin: 0 10px;
-  font-size: 1.3rem;
-  display: inline-block;
+    color: lightgray;
+    margin: 0 10px;
+    font-size: 1.3rem;
+    display: inline-block;    
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #8e8e8e;
 }
 
 @media (max-width: 1400px) {
@@ -495,7 +535,7 @@ footer a {
     }
     
     .logo {
-        height: 30px;
+        height: 40px;
     }
 
     .search {
@@ -506,14 +546,20 @@ footer a {
         width: 100%;
     }
 
+    .right {
+        gap: 0;
+    }
+
+    .right a {
+        width: 45px;
+        margin: 0 7px 0 0;
+        padding: 0;
+    }
+
     .right i {
         display: block;
         color: white;
-        font-size: 1.05rem;
-    }
-
-    .right {
-        gap: 12px;
+        font-size: 1.3rem;
     }
 
     #signIn {
@@ -527,7 +573,8 @@ footer a {
     }
 
     .movieContainer {
-        gap: 40px
+        gap: 20px;
+        padding: 10px;
     }
 
     .movieCard img {
@@ -547,7 +594,7 @@ footer a {
     .movieButtons button {
         width: 30px;
         height: 30px;
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .modalContent {
@@ -563,7 +610,7 @@ footer a {
     }
 
     footer a {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin: 0 5px;
     }
 }
