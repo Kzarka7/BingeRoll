@@ -493,8 +493,10 @@ footer a:hover {
     }
 
     .mobileSearchContainer {
-        padding: 10px 50px;
+        padding: 0 30px;
+        margin: 10px 0;
     }
+
 
     footer a {
         font-size: 1.2rem;
@@ -548,6 +550,10 @@ footer a:hover {
 
     .movieInfo {
         width: 150px;
+    }
+
+    .mobileSearchContainer {
+        padding: 0 20px;
     }
 }
 
