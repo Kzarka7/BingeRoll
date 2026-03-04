@@ -205,7 +205,7 @@ main h2 {
 @keyframes fadeUp {
     0% {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(50px);
         filter: blur(4px);
     }
 
