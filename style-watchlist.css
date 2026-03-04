@@ -199,7 +199,7 @@ main h2 {
 @keyframes fadeUp {
     0% {
         opacity: 0;
-        transform: translateY(50px);
+        transform: translateY(40px);
         filter: blur(4px);
     }
 
@@ -493,7 +493,7 @@ footer a:hover {
     }
 
     .mobileSearchContainer {
-        padding: 0 50px;
+        padding: 10px 50px;
     }
 
     footer a {
