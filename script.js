@@ -122,11 +122,14 @@ registerButton.addEventListener("click", (e) => {
         return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users"));
+    const user = new Proxy({}, passwordHandler);
 
-    if (!Array.isArray(users)) {
-        users = [];
-    }
+    user.username = username;
+    user.password = password; 
+
+    if (!user.password) return;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
     const userExists = users.find(user => user.username === username);
 
@@ -135,10 +138,7 @@ registerButton.addEventListener("click", (e) => {
         return;
     }
 
-    users.push({
-        username: username,
-        password: password
-    });
+    users.push(user);
 
     localStorage.setItem("users", JSON.stringify(users));
 
@@ -157,11 +157,14 @@ loginButton.addEventListener("click", (e) => {
     const username = loginModal.querySelector("input[type='text']").value.trim();
     const password = loginModal.querySelector(".modalPass input").value;
 
-    let users = JSON.parse(localStorage.getItem("users"));
+    const loginUser = new Proxy({}, passwordHandler);
 
-    if (!Array.isArray(users)) {
-        users = [];
-    }
+    loginUser.username = username;
+    loginUser.password = password; 
+
+    if (!loginUser.password) return;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
     const validUser = users.find(user => 
         user.username === username && user.password === password
@@ -182,6 +185,20 @@ loginButton.addEventListener("click", (e) => {
 
 });
 
+// BLOCKS THE PASSWORD IF ITS BELOW 6 DIGITS OR CHARACTERS
+const passwordHandler = {
+    set(target, prop, value) {
+
+        if (prop === "password" && value.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return false; 
+        }
+
+        target[prop] = value;
+        return true;
+    }
+};
+
 document.querySelectorAll(".togglePassword").forEach(button => {
     button.addEventListener("click", function () {
 
@@ -195,6 +212,5 @@ document.querySelectorAll(".togglePassword").forEach(button => {
 
     });
 });
-
 
 updateAuthButton();
