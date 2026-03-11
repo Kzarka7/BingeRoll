@@ -185,7 +185,7 @@ loginButton.addEventListener("click", (e) => {
 
 });
 
-// BLOCKS THE PASSWORD IF ITS BELOW 6 DIGITS OR CHARACTERS
+// USING META PROXY BLOCKS THE PASSWORD IF ITS BELOW 6 DIGITS OR CHARACTERS USING
 const passwordHandler = {
     set(target, prop, value) {
 

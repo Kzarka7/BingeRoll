@@ -74,38 +74,33 @@ function displayMovies(movies) {
 
     movies.forEach(movie => {
 
-        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${movie.imdbID}`)
-            .then(response => response.json())
-            .then(fullMovie => {
+        const div = document.createElement("div");
 
-                const div = document.createElement("div");
+        div.classList.add("movieContainer");
 
-                div.classList.add("movieContainer");
+        div.innerHTML = `
+        <div class="movieCard">
+            <img src="${movie.Poster}">
+            <div class="movieInfo">
+                <h4>${movie.Title}</h4>
+                <p>Released: ${movie.Year}</p>
+                <p style="text-transform: capitalize">${movie.Type}</p>
+            </div>
+        </div>
 
-                div.innerHTML = `
-                    <div class = "movieCard">
-                        <img src="${fullMovie.Poster}">
+        <div class="movieButtons">
+            <button onclick="addToWatchlist('${movie.imdbID}')">
+                <i class="fa-regular fa-bookmark"></i>  
+            </button>
+            <button onclick="getMovieDetails('${movie.imdbID}')">
+                <i class="fa-regular fa-circle-question"></i>
+            </button>
+        </div>
+        `;
 
-                        <div class="movieInfo">
-                            <h4>${fullMovie.Title}</h4>
-                            <p>Released: ${fullMovie.Year}</p>
-                            <p>Genre: ${fullMovie.Genre}</p>
-                            <p style = "text-transform: capitalize">${fullMovie.Type}</p>
-                            <p>Rating: ⭐ ${fullMovie.imdbRating}</p>
-                        </div>
-                    </div>
-                    <div class = "movieButtons">
-                        <button onclick="addToWatchlist('${fullMovie.imdbID}')"><i class="fa-regular fa-bookmark"></i></button>
-                        <button onclick="getMovieDetails('${movie.imdbID}')"><i class="fa-regular fa-circle-question"></i></button>
-                    </div>
-                `;
-
-                movieResults.appendChild(div);
-
-            });
+        movieResults.appendChild(div);
 
     });
-
 }
 
 // WATCHLIST FUNCTION, BLOCKS THE USER OR ADD MOVIE TO WATCHLIST IF THE USER IS LOGGED IN AND CLICK BOOKMARK ICON

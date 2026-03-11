@@ -49,15 +49,13 @@ nav {
 }
 
 .search input {
-    flex: 1;
     border: none;
     outline: none;
     background: transparent;
     color: inherit;
     font: inherit;
     padding: 0 30px;
-    max-width: 450px;
-    width: 80%;
+    flex: 1;
 }
 
 .search button {
@@ -355,6 +353,15 @@ main h2 {
 
 .modalBody a {
     cursor: pointer;
+    text-decoration: none;
+    color: #6454f0;
+    font-size: 0.95rem;
+}
+
+.modalBody p {
+    color: black;
+    font-size: 0.95rem;
+    margin: 10px 0 0 0;
 }
 
 .modalPass button, .repeatPass button {
@@ -376,18 +383,6 @@ main h2 {
 
 #loginButton:hover, #registerButton:hover {
     background-color: #392cae;
-}
-
-.modalBody p {
-    color: black;
-    font-size: 0.95rem;
-    margin: 10px 0 0 0;
-}
-
-.modalBody a {
-    text-decoration: none;
-    color: #6454f0;
-    font-size: 0.95rem;
 }
 
 .modalUser, .modalPass, .repeatPass {
@@ -627,7 +622,7 @@ footer a:hover {
     }
 }
 
-@Media (max-width: 600px) {
+@media (max-width: 600px) {
     .infoContent h2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;   

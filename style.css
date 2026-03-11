@@ -88,7 +88,6 @@ main {
     justify-content: center;
     height: 78vh;
     margin: 0;
-    background-color: #080808;
 }
 
 main img {
@@ -126,8 +125,7 @@ main p {
     font: inherit;
     font-size: 1.1rem;
     padding: 0 2vw;
-    max-width: 600px;
-    width: 80%;
+    flex: 1;
 }
 
 .search button {
@@ -154,7 +152,6 @@ article {
     justify-content: center;
     flex-direction: column;
     gap: 15px;
-    background-color: #080808;
 }
 
 article h2 {
@@ -252,8 +249,21 @@ article p {
     padding: 0 10px;
 }
 
+.modalBody p {
+    color: black;
+    font-size: 0.95rem;
+    margin: 10px 0 0 0;
+}
+
 .modalBody a {
+    text-decoration: none;
+    color: #6454f0;
+    font-size: 0.95rem;
     cursor: pointer;
+}
+
+.modalBody a:hover {
+    color: #392cae;
 }
 
 .modalPass button, .repeatPass button {
@@ -275,22 +285,6 @@ article p {
 
 #loginButton:hover, #registerButton:hover {
     background-color: #392cae;
-}
-
-.modalBody p {
-    color: black;
-    font-size: 0.95rem;
-    margin: 10px 0 0 0;
-}
-
-.modalBody a {
-    text-decoration: none;
-    color: #6454f0;
-    font-size: 0.95rem;
-}
-
-.modalBody a:hover {
-    color: #392cae;
 }
 
 .modalUser, .modalPass, .repeatPass {
